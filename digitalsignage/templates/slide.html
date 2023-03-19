@@ -31,22 +31,22 @@
 
 {% if field.type == "text" %}
     <div class="form-floating mb-3">
-        <input class="form-control" id="{{ field }}" name="{{ field.name }}" type="text" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
+        <input class="form-control" id="{{ field.name }}" name="{{ field.name }}" type="text" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
         <label for="{{ field.name }}">{{ field.name|title }}</label>
     </div>
 {% elif field.type == "textarea" %}
     <div class="form-floating mb-3">
-        <textarea class="form-control" id="{{ field }}" name="{{ field.name }}" type="text" placeholder="{{ field.name|title }}" style="height: 10rem;" data-sb-validations="required">{{ field.data }}</textarea>
+        <textarea class="form-control" id="{{ field.name }}" name="{{ field.name }}" type="text" placeholder="{{ field.name|title }}" style="height: 10rem;" data-sb-validations="required">{{ field.data }}</textarea>
         <label for="{{ field.name }}">{{ field.name|title }}</label>
     </div>
 {% elif field.type == "image" %}
     <div class="form-floating mb-3">
-        <input class="form-control" id="{{ field }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
+        <input class="form-control" id="{{ field.name }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
         <label for="{{ field.name }}">{{ field.name|title }}</label>
     </div>
 {% elif field.type == "url" %}
     <div class="form-floating mb-3">
-        <input class="form-control" id="{{ field }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
+        <input class="form-control" id="{{ field.name }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
         <label for="{{ field.name }}">{{ field.name|title }}</label>
     </div>
 {%endif%}
