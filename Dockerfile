@@ -19,3 +19,6 @@ RUN pip install -r requirements.txt
 
 # copy project
 COPY . .
+
+# Collect static files
+RUN python manage.py collectstatic
