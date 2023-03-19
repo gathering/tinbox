@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Slideshow - {{ slideshow.name }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Slideshow - {{ slideshow.name }} (#{{ slideshow.id }})</h1>
+    <a href="/slideshows" type="button" class="btn btn-primary">Go back</a>
+</div>
+
+<p>{{ slideshow.description }} </p>
+
+{% if not edit_access %}
+<div class="alert alert-warning fw-bold" role="alert">
+  You do not have access to edit this slideshow. Please contact Systemstøtte in the <a href="https://gathering.slack.com/archives/CG3MSB329">#support</a> channel on Slack to gain access.
+</div>
+{% endif %}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h3">Slides</h1>
+    <div class="dropdown">
+      <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        New slide 
+      </button>
+      <ul class="dropdown-menu">
+        <li class="dropdown-header">Slide templates</li>
+        {% for template in templates %}
+        <li><a class="dropdown-item" href="/slide/new/{{ slideshow.id }}/template/{{ template.id }}">{{ template.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+</div>
+
+<table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Template</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Active</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for slide in slides %}
+      <tr>
+        <th scope="row">{{ slide.id }}</th>
+        <td>{{ slide.title }}</td>
+        <td>{{ slide.template.name }}</td>
+        <td>{{ slide.duration }}</td>
+        <td>{{ slide.weight }}</td>
+        <td>{%if slide.is_active %} <i class="fa-solid fa-square-check text-success"></i> {% else %} <i class="fa-solid fa-square-xmark text-danger"></i> {% endif %}</td>
+        <td>{% if edit_access %}<a href="/slide/{{ slide.id }}" type="button" class="btn btn-primary btn-sm">Edit</a> <a href="/slide/{{ slide.id }}/delete" onclick="return confirm('Are you sure?');" type="button" class="btn btn-danger btn-sm ml-1">Delete</a>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h3">Screens</h1>
+  </div>
+
+  <p>This slideshow is in use by theese screens: </p>
+
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Location</th>
+        <th scope="col">Slideshow</th>
+        <th scope="col">Master</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for screen in screens %}
+      <tr>
+        <th scope="row">{{ screen.id }}</th>
+        <td>{{ screen.name }}</td>
+        <td>{{ screen.location }}</td>
+        <td>{{ screen.slideshow.name }}</td>
+        <td>{{ screen.master.name }}</td>
+        <td><a href="/view/screen/{{ screen.id }}" target="_blank" type="button" class="btn btn-success btn-sm">View slideshow</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+{%endblock%}

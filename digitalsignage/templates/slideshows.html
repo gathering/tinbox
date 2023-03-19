@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Slideshows{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Slideshows</h1>
+</div>
+
+<table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Is master?</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for slideshow in slideshows %}
+      <tr>
+        <th scope="row">{{ slideshow.id }}</th>
+        <td>{{ slideshow.name }}</td>
+        <td>{{ slideshow.description }}</td>
+        <td>{{ slideshow.is_master }}</td>
+        <td><a href="/slideshow/{{ slideshow.id }}" type="button" class="btn btn-primary btn-sm">Edit</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{%endblock%}

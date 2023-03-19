@@ -1,0 +1,8 @@
+Django==3.2.3
+django-allauth==0.52.0
+django-guardian==2.4.0
+social-auth-app-django==5.0.0
+social-auth-core==4.3.0
+mysqlclient==2.0.3
+gunicorn 
+python-dotenv==1.0.0

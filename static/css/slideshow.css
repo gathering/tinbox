@@ -1,0 +1,82 @@
+@font-face {
+    font-family: "Droid Sans";
+    src: url('/static/fonts/droid-sans/DroidSans.ttf') format('truetype');
+    font-weight: normal;
+  }
+
+@font-face {
+    font-family: "Droid Sans";
+    src: url('/static/fonts/droid-sans/DroidSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+  }
+
+body {
+    background-color: #000;
+    color: #FFF;
+}
+
+#tv {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-family: "Droid Sans";
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    color: #FFF;
+    background-color: #000;
+    background-image: url('/static/temp-background.png');
+}
+
+.content {
+    padding-top: 80px;
+    padding-left: 120px;
+}
+
+#tv h1 {
+    font-size: 120px;
+}
+
+#tv p {
+    font-size: 80px;
+}
+
+table, th, td {
+    color: #fff;
+}
+
+td {
+    vertical-align: top;
+}
+
+.image-4th {
+    position: absolute; 
+    top: 120px;
+    right: 120px;
+    width: 640px;
+}
+
+.text-image-4th {
+    width: 1000px;
+}
+
+.image-4th img {
+    width: 100%;
+}
+
+.iframe-full{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1920px;
+    height: 1080px;
+    border: none;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">tinbox</h1>
+</div>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+  <div class="flex-fill card text-white bg-warning m-3">
+    <div class="card-body text-center fs-1">
+        <i class="fa-solid fa-display"></i> {{ screens }} <br/>
+        <span class="fs-3"> Screens </span>
+    </div>
+  </div>
+  <div class="flex-fill card text-white bg-success m-3">
+    <div class="card-body text-center fs-1">
+        <i class="fa-brands fa-slideshare"></i> {{ slideshows }} <br/>
+        <span class="fs-3"> Slideshows </span>
+    </div>
+  </div>
+  <div class="flex-fill card text-white bg-info m-3">
+    <div class="card-body text-center fs-1">
+        <i class="fa-solid fa-note-sticky"></i> {{ slides }} <br/>
+        <span class="fs-3"> Slides </span>
+    </div>
+  </div>
+  <div class="flex-fill card text-white bg-danger m-3">
+    <div class="card-body text-center fs-1">
+        <i class="fa-solid fa-copy"></i> {{ slide_templates }} <br/>
+        <span class="fs-3"> Slide templates </span>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex">
+    <div>
+        <p class="lead">
+            What is tinbox?
+        </p>
+        <p>
+            tinbox is an information display system that utilizes HTML5 and JavaScript to generate slideshows, designed to help organizations display dynamic content on digital screens in real-time. Dont worry, the name does not mean anything.
+        </p>
+    </div>
+</div>
+
+{% endblock %}

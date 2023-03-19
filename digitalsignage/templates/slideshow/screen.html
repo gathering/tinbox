@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>tinbox - Slideshow - {{ screen.name }}</title>
+        <link rel="stylesheet" href="/static/css/slideshow.css">
+        <link rel="icon" href="/static/tinbox-white.png" sizes="32x32" type="image/png">
+    </head>
+    <body>
+        <div id="slide-a"></div>
+        <div id="slide-b"></div>
+    <script src="/static/js/slideshow.js"></script>
+    <script>
+        // Start slideshow :-)
+        run({{ screen.id }});
+    </script>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}New slide{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">New slide from template {{ template.name }}</h1>
+</div>
+
+<form class="pb-10" id="slide-form" method="post">
+
+<div class="container px-5 my-5">
+{% for field in template_fields.fields %}
+
+{% if field.type == "text" %}
+    <div class="form-floating mb-3">
+        <input class="form-control" id="{{ field }}" name="{{ field.name }}" type="text" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
+        <label for="{{ field.name }}">{{ field.name|title }}</label>
+    </div>
+{% elif field.type == "textarea" %}
+    <div class="form-floating mb-3">
+        <textarea class="form-control" id="{{ field }}" name="{{ field.name }}" type="text" placeholder="{{ field.name|title }}" style="height: 10rem;" data-sb-validations="required">{{ field.data }}</textarea>
+        <label for="{{ field.name }}">{{ field.name|title }}</label>
+    </div>
+    
+{% elif field.type == "image" %}
+    <div class="form-floating mb-3">
+        <input class="form-control" id="{{ field }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
+        <label for="{{ field.name }}">{{ field.name|title }}</label>
+    </div>
+{% elif field.type == "url" %}
+    <div class="form-floating mb-3">
+        <input class="form-control" id="{{ field }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
+        <label for="{{ field.name }}">{{ field.name|title }}</label>
+    </div>
+{%endif%}
+
+{%endfor%}
+        <div class="d-grid">
+            <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Save</button>
+        </div>
+        {% csrf_token %}
+</div>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h3">Settings</h1>
+</div>
+
+<div class="container px-5 my-5">   
+    <div class="form-floating mb-3">
+        <input class="form-control" id="settings-title" name="settings-title" type="text" required="required"  placeholder="Title" value="{{ slide.title }}"/>
+        <label for="settings-title">Title</label>
+    </div>
+    <div class="mb-3">
+        <div class="form-check form-switch">
+            <input class="form-check-input" id="settings-active" name="settings-active" type="checkbox" name="active" checked/>
+            <label class="form-check-label" for="settings-active">Active</label>
+        </div>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="settings-active_until" name="settings-active_until" type="datetime-local" placeholder="Active until"/>
+        <label for="settings-active_until">Active until (default +1 month if left blank)</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="settings-duration" name="settings-duration" min=0 max=120 type="number" placeholder="Duration (s)" value="{{ slide.duration }}"/>
+        <label for="settings-duration">Duration (s)</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="settings-weight" name="settings-weight" min=0 type="number" placeholder="Weight" value="{{ slide.weight }}"/>
+        <label for="settings-weight">Weight</label>
+    </div>
+    <div class="d-grid">
+        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Save</button>
+    </div>
+</div>
+
+</form>
+
+{%endblock%}
