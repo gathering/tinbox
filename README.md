@@ -21,3 +21,12 @@ docker-compose exec app python3 manage.py createsuperuser
 
 This user can be used to login in the admin panel, here: `/admin`
 
+## Loading fixtures
+
+If you want to use the pre-defined slide templates, you need to load the fixtures for them.
+
+Run this command:
+
+```
+docker-compose exec app python3 manage.py loaddata fixtures/slidetemplates.json --app digitalsignage.slidetemplates
+```
