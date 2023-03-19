@@ -1,0 +1,46 @@
+[
+{
+    "model": "digitalsignage.slidetemplates",
+    "pk": 1,
+    "fields": {
+        "name": "Text",
+        "template": "<div class=\"content\">\r\n<h1>{{ title }}</h1>\r\n<p>{{ text }}</p>\r\n</div>",
+        "fields": "{\"fields\": [{\"name\":\"title\", \"type\":\"text\"}, {\"name\":\"text\", \"type\":\"textarea\"}]}",
+        "created_on": "2023-03-17T23:28:47.361Z",
+        "updated_on": "2023-03-18T22:30:43.071Z"
+    }
+},
+{
+    "model": "digitalsignage.slidetemplates",
+    "pk": 2,
+    "fields": {
+        "name": "Text with picture",
+        "template": "<div class=\"content text-image-4th\">\r\n<h1>{{ title }}</h1>\r\n<p>{{ text }}</p>\r\n</div>\r\n\r\n<div class=\"image-4th\">\r\n<img src=\"{{ picture }}\" />\r\n</div>",
+        "fields": "{\"fields\": [{\"name\":\"title\", \"type\":\"text\"}, {\"name\":\"text\", \"type\":\"textarea\"}, {\"name\":\"picture\", \"type\":\"image\"}]}",
+        "created_on": "2023-03-18T22:30:37.411Z",
+        "updated_on": "2023-03-19T20:31:43.561Z"
+    }
+},
+{
+    "model": "digitalsignage.slidetemplates",
+    "pk": 3,
+    "fields": {
+        "name": "Website embed",
+        "template": "<div class=\"content\">\r\n<iframe src=\"{{ url }}\" class=\"iframe-full\" scrolling=\"no\" allowtransparency=\"true\"></iframe>\r\n</div>",
+        "fields": "{\"fields\": [{\"name\":\"url\", \"type\":\"url\"}]}",
+        "created_on": "2023-03-19T20:36:17.413Z",
+        "updated_on": "2023-03-19T20:41:53.847Z"
+    }
+},
+{
+    "model": "digitalsignage.slidetemplates",
+    "pk": 4,
+    "fields": {
+        "name": "Picture",
+        "template": "<div class=\"image\">\r\n<img src=\"{{ picture }}\" style=\"width: {{ size }}\"/>\r\n</div>",
+        "fields": "{\"fields\": [{\"name\":\"picture\", \"type\":\"image\"}, {\"name\":\"size\", \"type\":\"text\"}]}",
+        "created_on": "2023-03-19T20:45:59.764Z",
+        "updated_on": "2023-03-19T20:46:05.958Z"
+    }
+}
+]
