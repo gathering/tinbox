@@ -1,4 +1,4 @@
-![tinbox logo](https://github.com/gathering/tinbox/blob/main/static/tinbox.png?raw=true)
+![tinbox logo](https://github.com/gathering/tinbox/blob/main/static/tinbox-white.png?raw=true)
 
 # tinbox
 
