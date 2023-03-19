@@ -19,3 +19,13 @@ RUN pip install -r requirements.txt
 
 # copy project
 COPY . .
+
+ENV STATIC_ROOT /app/static_built
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
+FROM nginx:alpine
+
+COPY ./static/ /var/www/html/static/
+COPY --from=0 /app/static_built/ /var/www/html/static/
