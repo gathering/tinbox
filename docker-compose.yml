@@ -18,7 +18,7 @@ services:
       - "8123:80"
     volumes:
       - ./static/:/var/www/html/static/:ro
-      - ./_config/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./_config/default.conf:/etc/nginx/conf.d/default.conf
     env_file:
       - ./.env
 
