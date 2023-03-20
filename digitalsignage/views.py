@@ -106,6 +106,9 @@ def new_slide(request, slideshow_id, template_id):
     template = SlideTemplates.objects.get(id=template_id)
     template_fields = json.loads(template.fields)
 
+    if not request.user.has_perm('digitalsignage.change_slideshow', slideshow):
+        return render(request, '403.html')
+
     if request.method == "POST":
         data = request.POST
         slide_data = {}
