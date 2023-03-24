@@ -1,4 +1,7 @@
-![tinbox logo](https://github.com/gathering/tinbox/blob/main/static/tinbox-white.png?raw=true)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./static/tinbox-white.png">
+  <img alt="tinbox logo" src="./static/tinbox.png">
+</picture>
 
 # tinbox
 
