@@ -163,8 +163,11 @@ def view_slide(request, id):
     slide_data = json.loads(slide.data)
     c = Context(slide_data)
     slide_template = t.render(c)
-
-    context = {"slide": slide, "slide_template": slide_template}
+    if "preview" in request.GET:
+        preview = bool(request.GET['preview'])
+    else:
+        preview = False
+    context = {"slide": slide, "slide_template": slide_template, "preview": preview}
     return render(request, 'slideshow/slide.html', context)
 
 def api_get_screen(request, id):

@@ -24,8 +24,6 @@ body {
     height: 1080px;
     overflow: hidden;
     color: #FFF;
-    background-color: #000;
-    background-image: url('/static/temp-background.png');
 }
 
 .content {
@@ -79,4 +77,12 @@ td {
     align-items: center;
     height: 100%;
     width: 100%;
+}
+
+#backgroud_video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
 }
