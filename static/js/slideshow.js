@@ -11,7 +11,7 @@ async function fetch_slide(id) {
 }
 
 async function render_slide(id) {
-    // A little hack to avoid flashing when changing slide.. 
+    // A little hack to avoid flashing when changing slide..
     fetch_slide(id).then((data) => {
         if (current == 1) {
             slideContainer = document.getElementById("slide-a").innerHTML = data;
@@ -37,12 +37,14 @@ async function run(screen_id) {
             // Render slide
             render_slide(data['slides'][i]['id']);
             console.log("Playing slide " + data['slides'][i]['id'] + "(" + data['slides'][i]['title'] + ") for " + data['slides'][i]['duration'] + " seconds.");
-            
+
             // Trigger timeout for the duration of the slide.
             await timeout(data['slides'][i]['duration']);
         }
         run(screen_id);
     });
+
+    // add support for 4k screens
+    const width = window.innerWidth;
+    document.body.style.zoom = width / 1920;
 }
-
-
