@@ -40,6 +40,14 @@ def view_asset(request, id):
     context = {"asset": asset}
     return render(request, 'asset.html', context)
 
+
+@login_required
+def delete_asset(request, id):
+    asset = Asset.objects.get(id=id)
+    asset.delete()
+    return redirect(reverse('list_assets'))
+
+
 @login_required
 def new_asset(request):
     if request.method == "POST":

@@ -41,6 +41,9 @@ async function run(screen_id) {
             // Trigger timeout for the duration of the slide.
             await timeout(data['slides'][i]['duration']);
         }
+        if (data['slides'].length == 0) {
+            await timeout(1);
+        }
         run(screen_id);
     });
 

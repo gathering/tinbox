@@ -41,6 +41,7 @@
     </div>
 {% elif field.type == "image" %}
     <div class="form-floating mb-3">
+        <p>Upload your images <a href="/assets">here</a> and paste the link to the image in the field below.</p>
         <input class="form-control" id="{{ field.name }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
         <label for="{{ field.name }}">{{ field.name|title }}</label>
     </div>
