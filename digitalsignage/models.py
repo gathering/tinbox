@@ -68,3 +68,9 @@ class Slide(models.Model):
         if self.active_until < timezone.now():
             return True
         return False 
+
+class Asset(models.Model):
+    name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='images/')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)

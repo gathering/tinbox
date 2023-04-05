@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}New asset{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">New asset</h1>
+</div>
+
+<form class="pb-10" id="asset-form" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="container px-5 my-5">   
+    <div class="form-floating mb-3">
+        <input class="form-control" id="name" name="name" type="text" required="required"  placeholder="Name" value=""/>
+        <label for="name">Name</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="image" name="image" type="file" accept="image/*, image/svg+xml" required="required"  placeholder="Image" value=""/>
+        <label for="name">Image</label>
+    </div>
+    <div class="d-grid">
+        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Save</button>
+    </div>
+</div>
+
+</form>
+
+{%endblock%}

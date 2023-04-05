@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, JsonResponse
 from django.forms.models import model_to_dict
 from django.template import Template, Context
@@ -24,6 +24,29 @@ def index(request):
 
     context = {"slides": len(slides), "slide_templates": len(slide_templates), "screens": len(screens), "slideshows": len(slideshows)}
     return render(request, 'index.html', context)
+
+@login_required
+def list_assets(request):
+    assets = Asset.objects.all()
+    context = {"assets": assets}
+    return render(request, 'assets.html', context)
+
+@login_required
+def view_asset(request, id):
+    asset = Asset.objects.get(id=id)
+    if request.method == "POST":
+        asset.name = request.POST['name']
+        asset.save()
+    context = {"asset": asset}
+    return render(request, 'asset.html', context)
+
+@login_required
+def new_asset(request):
+    if request.method == "POST":
+        asset = Asset(name=request.POST['name'], image=request.FILES['image'])
+        asset.save()
+        return redirect(reverse('list_assets'))
+    return render(request, 'new_asset.html')
 
 @login_required
 def list_screens(request):
@@ -184,3 +207,4 @@ def api_get_screen(request, id):
 
     data = {"screen": screen_dict, "slides": slides_dict}
     return JsonResponse(data)
+

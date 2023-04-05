@@ -157,3 +157,7 @@ SOCIAL_AUTH_KEYCLOAK_EXTRA_DATA=[("refresh_token","refresh_token")]
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
 
 LOGIN_REDIRECT_URL = '/'
+
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

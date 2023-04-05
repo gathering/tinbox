@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Assets{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Assets</h1>
+    <a href="/asset/new" type="button" class="btn btn-primary">New asset</a>
+</div>
+
+<table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for asset in assets %}
+      <tr>
+        <th scope="row">{{ asset.id }}</th>
+        <td>{{ asset.name }}</td>
+        <td>{{ asset.image.url }}</td>
+        <td><a href="/asset/{{ asset.id }}" type="button" class="btn btn-success btn-sm">Edit asset</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{%endblock%}

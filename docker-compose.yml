@@ -5,6 +5,8 @@ services:
     build: .
     command: gunicorn tinbox.wsgi --bind 0.0.0.0:8010 --workers 3
     restart: unless-stopped
+    volumes:
+      - ./media/:/app/media
     ports: 
       - "8010"
     env_file:
@@ -21,6 +23,7 @@ services:
     ports: 
       - "8123:80"
     volumes:
+      - ./media/:/var/www/html/media
       - ./_config/nginx/default.conf:/etc/nginx/conf.d/default.conf
     env_file:
       - ./.env

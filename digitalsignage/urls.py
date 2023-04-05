@@ -14,4 +14,7 @@ urlpatterns = [
     path('view/slide/<int:id>', views.view_slide, name='view_slide'),
     path('view/screen/<int:id>', views.view_screen, name='view_screen'),
     path('api/get/screen/<int:id>', views.api_get_screen, name='api_get_screen'),
+    path('assets', views.list_assets, name='list_assets'),
+    path('asset/new', views.new_asset, name="new_asset"),
+    path('asset/<int:id>', views.view_asset, name="view_asset"),
 ]

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Asset {{ asset.name }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Asset {{ asset.name }}</h1>
+    <a href="/assets" type="button" class="btn btn-primary">Go back</a>
+</div>
+
+<div class="container px-5 my-5">
+    <img src="{{ asset.image.url }}" style="max-width: 100%;"/>
+    <input type="text" class="form-control" type="text" disabled=disabled value="{{ asset.image.url }}" />
+</div>
+
+<form class="pb-10" id="slide-form" method="post">
+    {% csrf_token %}
+<div class="container px-5 my-5">   
+    <div class="form-floating mb-3">
+        <input class="form-control" id="name" name="name" type="text" required="required"  placeholder="Name" value="{{ asset.name }}"/>
+        <label for="name">Name</label>
+    </div>
+    <div class="d-grid">
+        <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Save</button>
+    </div>
+</div>
+
+</form>
+
+{%endblock%}
