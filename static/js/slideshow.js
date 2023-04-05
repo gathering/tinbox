@@ -43,6 +43,8 @@ async function run(screen_id) {
         }
         if (data['slides'].length == 0) {
             await timeout(1);
+            document.getElementById("slide-b").style.display = "none";
+            document.getElementById("slide-a").style.display = "none";
         }
         run(screen_id);
     });
