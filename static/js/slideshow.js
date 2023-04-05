@@ -18,11 +18,13 @@ async function render_slide(id) {
             document.getElementById("slide-a").style.display = "block";
             document.getElementById("slide-b").style.display = "none";
             current = 0;
+            slideContainer = document.getElementById("slide-b").innerHTML = "";
         } else {
             slideContainer = document.getElementById("slide-b").innerHTML = data;
             document.getElementById("slide-b").style.display = "block";
             document.getElementById("slide-a").style.display = "none";
             current = 1;
+            slideContainer = document.getElementById("slide-a").innerHTML = "";
         }
     });
 }
