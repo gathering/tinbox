@@ -48,8 +48,4 @@ async function run(screen_id) {
         }
         run(screen_id);
     });
-
-    // add support for 4k screens
-    const width = window.innerWidth;
-    document.body.style.zoom = width / 1920;
 }
