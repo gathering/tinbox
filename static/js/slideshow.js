@@ -34,14 +34,14 @@ function timeout(s) {
     return new Promise(resolve => setTimeout(resolve, (s * 1000)));
 }
 
-var first = True
+var first = 1
 
 async function run(screen_id) {
     fetch_screen(screen_id).then(async (data) => {
         for(let i = 0; i < data['slides'].length; i++) {
             // Render slide
             if (current_slide != data['slides'][i]['id'] && Number(data['slides'][i]['duration']) !== 0 || first) {
-                first = False
+                first = 0
                 render_slide(data['slides'][i]['id']);
             } else {
                 console.log("Infinite slide, not changing slide.")
