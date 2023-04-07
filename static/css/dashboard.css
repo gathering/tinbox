@@ -98,3 +98,7 @@ body {
   table, tr, td, th {
     color: white;
   }
+
+  input, label {
+    color: black;
+  }
