@@ -1,9 +1,9 @@
-Django==4.1.7
-django-allauth==0.52.0
+Django==4.2.0
+django-allauth==0.54.0
 django-guardian==2.4.0
-social-auth-app-django==5.0.0
-social-auth-core==4.3.0
-mysqlclient==2.0.3
-gunicorn 
+social-auth-app-django==5.2.0
+social-auth-core==4.4.1
+mysqlclient==2.1.1
+gunicorn==20.1.0
 python-dotenv==1.0.0
-Pillow
+Pillow==9.5.0
