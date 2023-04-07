@@ -182,6 +182,7 @@ def delete_slide(request, id):
     slide.delete()
     return redirect("/slideshow/" + str(slideshow_id))
 
+@xframe_options_exempt
 def view_screen(request, id):
     screen = Screen.objects.get(id=id)
     context = {"screen": screen}

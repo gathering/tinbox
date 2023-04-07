@@ -1,4 +1,5 @@
 var current = 0;
+var current_slide = 0;
 
 async function fetch_screen(id) {
     const response = await fetch("/api/get/screen/" + id);
@@ -37,11 +38,22 @@ async function run(screen_id) {
     fetch_screen(screen_id).then(async (data) => {
         for(let i = 0; i < data['slides'].length; i++) {
             // Render slide
-            render_slide(data['slides'][i]['id']);
+            if (current_slide != data['slides'][i]['id'] && Number(data['slides'][i]['duration']) !== 0) {
+                render_slide(data['slides'][i]['id']);
+            } else {
+                console.log("Infinite slide, not changing slide.")
+            }
             console.log("Playing slide " + data['slides'][i]['id'] + "(" + data['slides'][i]['title'] + ") for " + data['slides'][i]['duration'] + " seconds.");
 
+            current_slide = data['slides'][i]['id'];
+
             // Trigger timeout for the duration of the slide.
-            await timeout(data['slides'][i]['duration']);
+            if (Number(data['slides'][i]['duration']) === 0) {
+                await timeout(60);
+            } else {
+                await timeout(data['slides'][i]['duration']);
+            }
+            
         }
         if (data['slides'].length == 0) {
             await timeout(1);
