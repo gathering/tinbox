@@ -1,4 +1,4 @@
-Django==4.2.0
+Django==4.2.1
 django-allauth==0.54.0
 django-guardian==2.4.0
 social-auth-app-django==5.2.0
