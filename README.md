@@ -12,14 +12,14 @@ tinbox is a small Django-based application that creates slideshows in the web br
 The best way to go about this is to use Docker. Pull this repo, then run:
 
 ```
-docker-compose up -d --build
-docker-compose exec app python3 manage.py migrate
+docker compose up -d --build
+docker compose exec app python3 manage.py migrate
 ```
 
 After this, you might want to create a user for logging in:
 
 ```
-docker-compose exec app python3 manage.py createsuperuser
+docker compose exec app python3 manage.py createsuperuser
 ```
 
 This user can be used to login in the admin panel, here: `/admin`
@@ -31,5 +31,5 @@ If you want to use the pre-defined slide templates, you need to load the fixture
 Run this command:
 
 ```
-docker-compose exec app python3 manage.py loaddata fixtures/slidetemplates.json --app digitalsignage.slidetemplates
+docker compose exec app python3 manage.py loaddata fixtures/slidetemplates.json --app digitalsignage.slidetemplates
 ```
