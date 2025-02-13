@@ -102,3 +102,17 @@ body {
   input, label {
     color: black;
   }
+
+.thumbnail {
+  padding: 10px;
+  border: 1px #fff solid;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.thumbnail img {
+  max-height: 170px; 
+  max-width: 100%;
+}

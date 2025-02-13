@@ -1,6 +1,11 @@
+import os
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 from datetime import timedelta
+from io import BytesIO
+from PIL import Image as Img
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 def one_month_from_today():
     return timezone.now() + timedelta(days=30)
@@ -72,5 +77,44 @@ class Slide(models.Model):
 class Asset(models.Model):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to='images/')
+    thumbnail = models.ImageField(upload_to='thumbs')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+    def create_thumbnail(self):
+        if not self.image:
+            return
+
+        THUMBNAIL_SIZE = (512, 512)
+        DJANGO_TYPE = self.image.file.content_type
+
+        if DJANGO_TYPE == 'image/jpeg':
+            PIL_TYPE = 'jpeg'
+            FILE_EXTENSION = 'jpg'
+        elif DJANGO_TYPE == 'image/png':
+            PIL_TYPE = 'png'
+            FILE_EXTENSION = 'png'
+
+        image = Img.open(BytesIO(self.image.read()))
+        image.thumbnail(THUMBNAIL_SIZE, Img.LANCZOS)
+
+        temp_handle = BytesIO()
+        image.save(temp_handle, PIL_TYPE)
+        temp_handle.seek(0)
+
+        suf = SimpleUploadedFile(os.path.split(self.image.name)[-1],
+                temp_handle.read(), content_type=DJANGO_TYPE)
+        # Save SimpleUploadedFile into image field
+        self.thumbnail.save(
+            '%s_thumbnail.%s' % (os.path.splitext(suf.name)[0], FILE_EXTENSION),
+            suf,
+            save=False
+        )
+
+
+    def save(self, *args, **kwargs):
+        self.create_thumbnail()
+
+        super().save(*args, **kwargs)
+
+    
