@@ -40,6 +40,8 @@
         <label for="{{ field.name }}">{{ field.name|title }}</label>
     </div>
 {% elif field.type == "image" %}
+    {% include 'components/asset_select.html' %}
+{% elif field.type == "image_url" %}
     <div class="form-floating mb-3">
         <input class="form-control" id="{{ field.name }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
         <label for="{{ field.name }}">{{ field.name|title }}</label>
@@ -95,3 +97,7 @@
 </form>
 
 {%endblock%}
+
+{% block script %}
+<script src="/static/js/dashboard.js" crossorigin="anonymous"></script>
+{% endblock %}

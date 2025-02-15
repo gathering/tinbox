@@ -1,0 +1,37 @@
+<div class="d-grid">
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#selectAsset" id="selectAssetBtn">Select asset</button>
+</div>
+<div class="form-floating mb-3">
+    <input class="form-control" id="{{ field.name }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}" hidden/>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="selectAsset" aria-labelledby="selectAssetLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="selectAssetLabel">Select asset</h5>
+          <button type="button" class="btn close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Select a picture to show in the slide:</p>
+          <div class="row">
+            {% for asset in assets %}
+            <div class="col-sm-6 col-md-3">
+                <div class="thumbnail" style="border: 1px #000 solid;">
+                <a href="/asset/{{ asset.id }}"><img src="{{ asset.thumbnail.url }}" alt="{{ asset.thumbnail.name }}"></a>
+                <div class="caption">
+                    <h3>{{ asset.name }}</h3>
+                    <p><a type="button" class="btn btn-success btn-sm" onClick="selectAsset('{{ asset.image.url }}', '{{ asset.name }}')">Select</a></p>                
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+         </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>

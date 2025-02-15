@@ -22,12 +22,13 @@
         <textarea class="form-control" id="{{ field }}" name="{{ field.name }}" type="text" placeholder="{{ field.name|title }}" style="height: 10rem;" data-sb-validations="required">{{ field.data }}</textarea>
         <label for="{{ field.name }}">{{ field.name|title }}</label>
     </div>
-    
 {% elif field.type == "image" %}
+    {% include 'components/asset_select.html' %}
+{% elif field.type == "image_url" %}
     <div class="form-floating mb-3">
-        <input class="form-control" id="{{ field }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
-        <label for="{{ field.name }}">{{ field.name|title }}</label>
+        <input class="form-control" id="{{ field }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}" />
     </div>
+    <p>Upload your images <a href="/assets">here</a> and paste the link to the image in the field below.</p>
 {% elif field.type == "url" %}
     <div class="form-floating mb-3">
         <input class="form-control" id="{{ field }}" name="{{ field.name }}" type="url" placeholder="{{ field.name|title }}" value="{{ field.data }}"/>
@@ -36,10 +37,7 @@
 {%endif%}
 
 {%endfor%}
-        <div class="d-grid">
-            <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Save</button>
-        </div>
-        {% csrf_token %}
+        
 </div>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -49,7 +47,7 @@
 <div class="container px-5 my-5">   
     <div class="form-floating mb-3">
         <input class="form-control" id="settings-title" name="settings-title" type="text" required="required"  placeholder="Title" value="{{ slide.title }}"/>
-        <label for="settings-title">Title</label>
+        <label for="settings-title">Slide name</label>
     </div>
     <div class="mb-3">
         <div class="form-check form-switch">
@@ -73,7 +71,11 @@
         <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Save</button>
     </div>
 </div>
-
+{% csrf_token %}
 </form>
 
 {%endblock%}
+
+{% block script %}
+<script src="/static/js/dashboard.js" crossorigin="anonymous"></script>
+{% endblock %}

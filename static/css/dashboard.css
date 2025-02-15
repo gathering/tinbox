@@ -110,9 +110,14 @@ body {
   -moz-border-radius: 10px;
   border-radius: 10px;
   text-align: center;
+  min-height: 220px;
 }
 
 .thumbnail img {
-  max-height: 170px; 
+  max-height: 85px;
   max-width: 100%;
+}
+
+.modal-dialog {
+  color: #000;
 }

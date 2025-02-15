@@ -127,8 +127,8 @@ def edit_slide(request, id):
             field['data'] = ""
 
 
-
-    context = {"slideshow": slideshow, "slide": slide, "template_fields": template_fields }
+    assets = Asset.objects.order_by('-id').all()
+    context = {"slideshow": slideshow, "slide": slide, "template_fields": template_fields, "assets": assets}
     return render(request, 'slide.html', context)
 
 @login_required
@@ -172,7 +172,8 @@ def new_slide(request, slideshow_id, template_id):
     for field in template_fields['fields']:
         field['data'] = ""
 
-    context = {"slideshow": slideshow, "template": template, "template_fields": template_fields }
+    assets = Asset.objects.order_by('-id').all()
+    context = {"slideshow": slideshow, "template": template, "template_fields": template_fields, "assets": assets}
     return render(request, 'new_slide.html', context)
 
 @login_required
