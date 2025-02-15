@@ -27,7 +27,7 @@ def index(request):
 
 @login_required
 def list_assets(request):
-    assets = Asset.objects.all()
+    assets = Asset.objects.order_by('-id').all()
     context = {"assets": assets}
     return render(request, 'assets.html', context)
 
