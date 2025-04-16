@@ -83,14 +83,19 @@ def list_slide_templates(request):
 def list_slideshows(request):
     slideshows = Slideshow.objects.all()
 
-    slideshows_can_edit = slideshows_all = []
+    slideshows_can_edit = []
+    slideshows_all = []
+
     for slideshow in slideshows:
         if request.user.has_perm("digitalsignage.change_slideshow", slideshow):
             slideshows_can_edit.append(slideshow)
         else:
             slideshows_all.append(slideshow)
 
-    context = {"slideshows": slideshows_all, "slideshows_can_edit": slideshows_can_edit}
+    context = {
+        "slideshows_all": slideshows_all,
+        "slideshows_can_edit": slideshows_can_edit,
+    }
     return render(request, "slideshows.html", context)
 
 
