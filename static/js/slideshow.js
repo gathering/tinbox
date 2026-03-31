@@ -56,7 +56,7 @@ async function run(screen_id) {
             } else {
                 await timeout(data['slides'][i]['duration']);
             }
-            
+
         }
         if (data['slides'].length == 0) {
             await timeout(1);
@@ -65,4 +65,8 @@ async function run(screen_id) {
         }
         run(screen_id);
     });
+
+    // add support for 4k screens
+    const width = window.innerWidth;
+    document.body.style.zoom = width / 1920;
 }
