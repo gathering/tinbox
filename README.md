@@ -12,6 +12,7 @@ tinbox is a small Django-based application that creates slideshows in the web br
 The best way to go about this is to use Docker. Pull this repo, then run:
 
 ```
+cp .env.example .env
 docker compose up -d --build
 docker compose exec app python3 manage.py migrate
 ```

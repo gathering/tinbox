@@ -16,6 +16,9 @@
         {% if slide.has_expired %}
         Slide was deactivated at {{ slide.active_until }}
         {% endif %}
+        {% if slide.has_not_started %}
+        Slide will be activated at {{ slide.active_from }}
+        {% endif %}
     </div>
 </div>
 {% endif %}
@@ -77,7 +80,11 @@
         </div>
     </div>
     <div class="form-floating mb-3">
-        <input class="form-control" id="settings-active_until" name="settings-active_until" type="datetime-local" placeholder="Active until" value="{{ slide.active_until |date:"Y-m-d\TH:m" }}"/>
+        <input class="form-control" id="settings-active_from" name="settings-active_from" type="datetime-local" placeholder="Active from" value="{{ slide.active_from|date:'Y-m-d\TH:i' }}"/>
+        <label for="settings-active_from">Active from</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input class="form-control" id="settings-active_until" name="settings-active_until" type="datetime-local" placeholder="Active until" value="{{ slide.active_until|date:'Y-m-d\TH:i' }}"/>
         <label for="settings-active_until">Active until</label>
     </div>
     <div class="form-floating mb-3">

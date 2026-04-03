@@ -5,6 +5,8 @@ from django.template import Template, Context
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from datetime import datetime
+from django.conf import settings
 
 import json, os
 
@@ -13,7 +15,7 @@ from .models import *
 
 def index(request):
     if not request.user.is_authenticated:
-        if os.environ.get("OAUTH_ENABLED", True):
+        if settings.OAUTH_ENABLED:
             return render(request, "login.html")
         else:
             return redirect("/accounts/login")
@@ -139,8 +141,10 @@ def edit_slide(request, id):
         slide.weight = data["settings-weight"]
         slide.title = data["settings-title"]
         slide.duration = data["settings-duration"]
+        if data["settings-active_from"] != "":
+            slide.active_from = datetime.strptime(data["settings-active_from"], "%Y-%m-%dT%H:%M")
         if data["settings-active_until"] != "":
-            slide.active_until = data["settings-active_until"]
+            slide.active_until = datetime.strptime(data["settings-active_until"], "%Y-%m-%dT%H:%M")
 
         for field in template_fields["fields"]:
             if field["name"] in data:
@@ -200,8 +204,10 @@ def new_slide(request, slideshow_id, template_id):
                 slide_data[field["name"]] = data[field["name"]]
         slide.template = template
         slide.slideshow = slideshow
+        if data["settings-active_from"] != "":
+            slide.active_from = datetime.strptime(data["settings-active_from"], "%Y-%m-%dT%H:%M")
         if data["settings-active_until"] != "":
-            slide.active_until = data["settings-active_until"]
+            slide.active_until = datetime.strptime(data["settings-active_until"], "%Y-%m-%dT%H:%M")
         slide.data = json.dumps(slide_data)
         slide.save()
         return redirect("/slide/" + str(slide.id))

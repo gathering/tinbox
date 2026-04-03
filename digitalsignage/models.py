@@ -53,6 +53,7 @@ class Slide(models.Model):
     data = models.TextField(blank=True)
     duration = models.IntegerField(default=5)
     active = models.BooleanField(default=True)
+    active_from = models.DateTimeField(default=timezone.now, blank=True, null=True)
     active_until = models.DateTimeField(default=one_month_from_today, blank=True, null=True)
     weight = models.IntegerField(default=10)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -65,6 +66,8 @@ class Slide(models.Model):
     def is_active(self):
         if not self.active:
             return False
+        elif self.active_from and self.active_from > timezone.now():
+            return False
         elif self.active_until < timezone.now():
             return False
         return True
@@ -73,7 +76,13 @@ class Slide(models.Model):
     def has_expired(self):
         if self.active_until < timezone.now():
             return True
-        return False 
+        return False
+    
+    @property
+    def has_not_started(self):
+        if self.active_from and self.active_from > timezone.now():
+            return True
+        return False
 
 class Asset(models.Model):
     name = models.CharField(max_length=200)
