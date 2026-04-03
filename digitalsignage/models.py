@@ -6,6 +6,7 @@ from datetime import timedelta
 from io import BytesIO
 from PIL import Image as Img
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.validators import FileExtensionValidator
 
 def one_month_from_today():
     return timezone.now() + timedelta(days=30)
@@ -76,7 +77,10 @@ class Slide(models.Model):
 
 class Asset(models.Model):
     name = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(
+        upload_to='images/',
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif'])]
+    )
     thumbnail = models.ImageField(upload_to='thumbs')
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
@@ -94,6 +98,9 @@ class Asset(models.Model):
         elif DJANGO_TYPE == 'image/png':
             PIL_TYPE = 'png'
             FILE_EXTENSION = 'png'
+        elif DJANGO_TYPE == 'image/gif':
+            PIL_TYPE = 'gif'
+            FILE_EXTENSION = 'gif'
 
         image = Img.open(BytesIO(self.image.read()))
         image.thumbnail(THUMBNAIL_SIZE, Img.LANCZOS)
@@ -113,7 +120,9 @@ class Asset(models.Model):
 
 
     def save(self, *args, **kwargs):
+        self.full_clean(exclude=["thumbnail"])
         self.create_thumbnail()
+        self.full_clean()
 
         super().save(*args, **kwargs)
 
