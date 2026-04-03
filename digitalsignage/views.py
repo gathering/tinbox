@@ -259,7 +259,10 @@ def api_get_screen(request, id):
     screen = Screen.objects.get(id=id)
     main_slides = (
         Slide.objects.filter(
-            slideshow_id=screen.slideshow, active=True, active_until__gte=timezone.now()
+            slideshow_id=screen.slideshow,
+            active=True,
+            active_until__gte=timezone.now(),
+            active_from__lte=timezone.now()
         )
         .order_by("-weight")
         .values()
@@ -270,6 +273,7 @@ def api_get_screen(request, id):
                 slideshow_id=screen.master,
                 active=True,
                 active_until__gte=timezone.now(),
+                active_from__lte=timezone.now()
             )
             .order_by("-weight")
             .values()
