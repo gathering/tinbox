@@ -6,4 +6,4 @@ mysqlclient==2.2.8
 pillow==12.3.0
 python-dotenv==1.2.2
 social-auth-app-django==5.7.0
-social-auth-core==4.8.5
+social-auth-core==5.0.0
