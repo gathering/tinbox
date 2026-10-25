@@ -1,0 +1,72 @@
+version: 2
+
+# Security updates ignore schedule and cooldown. Enable "Dependabot security
+# updates" in the repo's Code security settings for them to be raised.
+
+updates:
+  # Python (requirements.txt)
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+      day: wednesday
+      time: "16:00"
+      timezone: CET
+    cooldown:
+      default-days: 3
+    open-pull-requests-limit: 4
+    groups:
+      # Security updates: one PR for all non-major fixes. Majors get their own PR.
+      security-patches:
+        applies-to: security-updates
+        patterns: ["*"]
+        update-types: [minor, patch]
+      # Django and its integrations are upgraded together, majors included.
+      django:
+        patterns:
+          - "django"
+          - "django-*"
+      # Everything else: minor/patch only. Majors get individual PRs.
+      catch-all:
+        patterns: ["*"]
+        update-types: [minor, patch]
+    labels: [dependencies, dependabot, python]
+
+  # Base image in Dockerfile
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+      day: wednesday
+      time: "16:00"
+      timezone: CET
+    cooldown:
+      default-days: 3
+    labels: [dependencies, dependabot, docker]
+
+  # Images in docker-compose.yml
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule:
+      interval: weekly
+      day: wednesday
+      time: "16:00"
+      timezone: CET
+    cooldown:
+      default-days: 3
+    labels: [dependencies, dependabot, docker]
+
+  # GitHub Actions
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: wednesday
+      time: "16:00"
+      timezone: CET
+    cooldown:
+      default-days: 3
+    groups:
+      actions:
+        patterns: ["*"]
+    labels: [dependencies, dependabot, github-actions]
