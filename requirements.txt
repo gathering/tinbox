@@ -1,7 +1,7 @@
 Django==5.2.18
 django-allauth==65.20.1
 django-guardian==3.5.2
-gunicorn==25.3.0
+gunicorn==26.2.0
 mysqlclient==2.3.0
 pillow==13.0.0
 python-dotenv==1.2.4
