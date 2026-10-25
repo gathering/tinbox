@@ -1,4 +1,4 @@
-Django==5.2.18
+Django==6.1.2
 django-allauth==65.20.1
 django-guardian==3.5.2
 gunicorn==25.3.0
