@@ -21,6 +21,11 @@ updates:
         applies-to: security-updates
         patterns: ["*"]
         update-types: [minor, patch]
+      # Released in lockstep (app-django pins the supported social-auth-core range),
+      # so all update types, majors included, move together.
+      social-auth:
+        patterns:
+          - "social-auth-*"
       # Django and its integrations are upgraded together, majors included.
       django:
         patterns:
