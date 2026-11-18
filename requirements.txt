@@ -5,5 +5,5 @@ gunicorn==25.3.0
 mysqlclient==2.3.0
 pillow==13.0.0
 python-dotenv==1.2.4
-social-auth-app-django==7.2.0
-social-auth-core==6.2.0
+social-auth-app-django==8.1.0
+social-auth-core==7.2.0
